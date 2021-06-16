@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
+import React, { useContext, useState } from 'react';
+import { PendingContext } from './Context/PendingContext';
+import { EmployeeContext } from './Context/EmployeeContext';
 
-function RequestForm({employee}) {
-    const[amount, setAmount] = useState("");
-    const[reason, setReason] = useState("");
-    const[result, setResult] = useState('');
-
+function RequestForm() {
+    const employeeContext = useContext(EmployeeContext);
+    const pendingContext = useContext(PendingContext);
+    const [amount, setAmount] = useState('');
+    const [reason, setReason] = useState('');
+    const [result, setResult] = useState('');
+    const [update, setUpdate] = pendingContext.update;
+    const [employee, setEmployee] = employeeContext.employee;
     const updateAmount = (e) => {
         setAmount(e.target.value);
     }
@@ -22,25 +27,29 @@ function RequestForm({employee}) {
             body: JSON.stringify({
                 amount,
                 reason,
-                employee_id:employee,
+                employee_id: employee,
                 status: 'Pending'
-            } )
+            })
         })
-        if(sendRequest.status===200){
+        if (sendRequest.status === 200) {
             setResult('Success! Your request was submitted.')
-        }else{
+            setUpdate(true)
+
+        } else {
             setResult('Unable to submit your request.')
         }
+        setAmount('');
+        setReason('');
     }
 
     return (
         <>
-        <form onSubmit={addRequest}>
-            <input type="text" name={amount} onChange={updateAmount} placeholder='Amount'/>
-            <input type="text" name={reason} onChange={updateReason} placeholder='Reason'/>
-            <button>Submit</button>
-        </form>
-        <p>{result}</p>
+            <form onSubmit={addRequest}>
+                <input type="text" name={amount} value={amount} onChange={updateAmount} placeholder='Amount' />
+                <input type="text" name={reason} value={reason} onChange={updateReason} placeholder='Reason' />
+                <button>Submit</button>
+            </form>
+            <p>{result}</p>
         </>
     );
 }
