@@ -1,15 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import { EmployeeContext } from '../Context/EmployeeContext';
+import { ResolvedContext } from '../Context/ResolvedContext';
 
-function EmployeeResolved({ employee }) {
-    const [resolved, setResolved] = useState([]);
-    useEffect(() => {
-        (async () => {
-            const getResolved = await fetch(`https://ers-node.herokuapp.com/employee/resolved/${employee}`);
-            const results = await getResolved.json();
-            setResolved(results.data);
-        })();
-    }, [employee]);
-
+function EmployeeResolved() {
+    const [resolved, setResolved] = useContext(ResolvedContext);
     return (
         <table>
             <thead>

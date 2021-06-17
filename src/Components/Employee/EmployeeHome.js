@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import EmployeeSelector from './EmployeeSelector';
 import RequestForm from './RequestForm';
 import ViewRequests from './ViewRequests';
+import { ResolvedProvider } from './Context/ResolvedContext'
 import { PendingProvider } from './Context/PendingContext'
 import { EmployeeProvider } from './Context/EmployeeContext';
 
@@ -23,19 +24,19 @@ function EmployeeHome() {
     return (
         <EmployeeProvider>
             <PendingProvider>
-                <div>
-                    <h1>Employee Home</h1>
-                    <div className='employee-home'>
-                    <EmployeeSelector />
-                        <div>
-                            <button onClick={toggleForm}>{formButton}</button>
-                            {showForm ? <RequestForm /> : null}
+                <ResolvedProvider>
+                    <div>
+                        <h1>Employee Home</h1>
+                        <div className='employee-home'>
+                            <EmployeeSelector />
+                            <div>
+                                <button onClick={toggleForm}>{formButton}</button>
+                                {showForm ? <RequestForm /> : null}
+                            </div>
                         </div>
-                        <div>
-                            {true ? <ViewRequests /> : null}
-                        </div>
+                        <ViewRequests />
                     </div>
-                </div>
+                </ResolvedProvider>
             </PendingProvider>
         </EmployeeProvider>
     );

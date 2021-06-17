@@ -4,13 +4,15 @@
   background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
   background-blend-mode: multiply;
   color: white;
+  background-repeat: repeat;
 }
+/*Nav Bar*/
 nav{
   display: flex;
   justify-content: space-around;
   align-items: center;
   min-height: 10vh;
-  background: #241c29;  
+  background: rgb(12, 6, 6);  
 }
 
 li{
@@ -23,7 +25,7 @@ li{
 .nav-links{
   width: 50%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   list-style: none;
 }
 .nav-link{
@@ -42,9 +44,71 @@ li{
   text-decoration: underline;
   font-size: large;
 }
+/*Employee Home*/
 .employee-home{
   display: flex;
   justify-content: space-around;
   align-items: center;
   min-height: 10vh;
+  position: relative;
+}
+/*Tables*/
+table{
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 66%;
+  margin-left: 16.5%;
+}
+td{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+}
+tr:nth-child(even){
+  background-color: #575353;
+}
+#empl-req tr:hover{
+  background-color: rgb(12, 6, 6);
+}
+th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: rgb(12, 6, 6);
+}
+/*Buttons*/
+button{
+  margin-left: 12px;
+  margin-right: 12px;
+  border:none;
+  color: white;
+  background-color:rgb(12, 6, 6);
+  padding: 12px 20px;
+  border-radius: 15px;
+}
+button:hover{
+  background-color:rgb(34, 20, 20);
+}
+.decider{
+  margin-left: 6px;
+  margin-right: 6px;
+  padding: 8px 14px;
+  font-size: 12px;
+}
+/*Employee Dropdown*/
+select{
+  color: white;
+  background-color: rgb(12,6,6);
+  border: none;
+  padding: 5px 12px;
+  border-radius: 12px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; 
+}
+/*Request form*/
+input{
+  border-radius: 5px;
+  padding: 5px 5px;
+  margin: 10px 5px
 }

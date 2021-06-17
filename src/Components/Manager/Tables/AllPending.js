@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AllPendingContext } from "../Context/AllPendingContext";
 import ResolveRequest from "../ResolveRequest"
 
 function AllPending() {
-    const [requests, setRequests] = useState([]);
-    useEffect(() => {
-        (async () => {
-            const fetchRequests = await fetch(`https://ers-node.herokuapp.com/manager/pending`);
-            const requests = await fetchRequests.json();
-            setRequests(requests.data);
-        })();
-    }, [])
+    const { pending } = useContext(AllPendingContext)
+    const [requests, setRequests] = pending;
     return (
         <table>
             <thead>
@@ -29,7 +24,6 @@ function AllPending() {
                             <td>{request.amount}</td>
                             <td>{request.reason}</td>
                             <td>{request.employee_id}</td>
-                            <td>{request.status}</td>
                             <ResolveRequest requestId={request._id} status={request.status === 'Pending' ? true : false} />
                         </tr>
                     ))

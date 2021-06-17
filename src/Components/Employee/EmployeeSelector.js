@@ -14,12 +14,14 @@ const EmployeeSelector = () => {
         setUpdate(true);
     }
     return (
-        <select defaultValue={employee} onChange={changeEmployee}>
-            <option value="" disabled>Select Employee</option>
-            {employees.map(employee => (
-                <option value={employee._id} key={employee._id}>{employee.first_name} {employee.last_name}</option>
-            ))}
-        </select>
+        <div >
+            <select defaultValue={employee} onChange={changeEmployee}>
+                <option value="" disabled>Select Employee</option>
+                {employees.map(employee => (
+                    <option value={employee._id} key={employee._id}>{employee.first_name} {employee.last_name}</option>
+                ))}
+            </select>
+        </div>
     );
 }
 

@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AllPendingContext } from './Context/AllPendingContext';
 
 function ResolveRequest({ requestId, status }) {
+    const { update } = useContext(AllPendingContext)
     const [pending, setPending] = useState(status)
+    const [updatePending, setUpdatePending] = update
     const accept = async () => {
         const status = await sendDecision('Accepted');
-        console.log("response status",status);
         if ( status === 200) {
             console.log("accepted, setting pending false");
             setPending(false);
+            setUpdatePending(true);
         }
     }
     const reject = async () => {
         const status = await sendDecision('Rejected');
-        console.log("response status",status);
         if (status === 200) {
             console.log("rejected, setting pending false");
             setPending(false);
+            setUpdatePending(true);
         }
     }
     const sendDecision = async (decision) => {
@@ -39,9 +42,9 @@ function ResolveRequest({ requestId, status }) {
             {
                 pending ?
                     <td>
-                        <button onClick={accept}>Accept</button>
-                        <button onClick={reject}> Reject</button >
-                    </td> : null
+                        <button className='decider' onClick={accept}>Accept</button>
+                        <button className='decider' onClick={reject}> Reject</button >
+                    </td> : <td></td>
             }
         </>
 

@@ -15,13 +15,13 @@ function ViewRequests() {
         setShowPending(false);
     }
     return (employee ?( 
-        <>
+        <div>
             <button onClick={toPending}>Pending</button>
             <button onClick={toResolved}>Resolved</button>
             <div>
                 {showPending ? <EmployeePending employee={employee} /> : <EmployeeResolved employee={employee} />}
             </div>
-        </>):null
+        </div>):null
     );
 }
 

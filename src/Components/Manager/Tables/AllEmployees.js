@@ -19,7 +19,7 @@ function AllEmployees() {
         setEmployee(id);
     }
     return (
-        <table>
+        <table id="empl-req">
             <thead>
                 <tr>
                     <th>ID</th>

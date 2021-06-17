@@ -1,14 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AllResolvedContext } from "../Context/AllResolvedContext";
 
 function AllResolved() {
-    const [requests, setRequests] = useState([]);
-    useEffect(() => {
-        (async () => {
-            const fetchRequests = await fetch(`https://ers-node.herokuapp.com/manager/resolved`);
-            const requests = await fetchRequests.json();
-            setRequests(requests.data);
-        })();
-    }, [])
+    const [resolved, setResolved] = useContext(AllResolvedContext);
     return (
         <table>
             <thead>
@@ -17,11 +11,12 @@ function AllResolved() {
                     <th>Amount Requested</th>
                     <th>Reason</th>
                     <th>Employee Requesting</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {
-                    requests.map(request => (
+                    resolved.map(request => (
                         <tr key={request._id}>
                             <td>{request._id}</td>
                             <td>{request.amount}</td>
