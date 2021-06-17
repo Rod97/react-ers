@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { PendingContext } from './Context/PendingContext';
+import { PendingContext } from '../Context/PendingContext';
 
 function EmployeePending() {
     const context = useContext(PendingContext)

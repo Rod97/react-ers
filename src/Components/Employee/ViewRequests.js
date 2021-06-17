@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { EmployeeContext } from './Context/EmployeeContext';
-import EmployeePending from './EmployeePending';
-import EmployeeResolved from './EmployeeResolved';
+import EmployeePending from './Tables/EmployeePending';
+import EmployeeResolved from './Tables/EmployeeResolved';
 
 function ViewRequests() {
     const employeeContext = useContext(EmployeeContext);

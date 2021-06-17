@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { PendingContext } from './Context/PendingContext';
 import { EmployeeContext } from './Context/EmployeeContext';
 
@@ -10,6 +10,11 @@ function RequestForm() {
     const [result, setResult] = useState('');
     const [update, setUpdate] = pendingContext.update;
     const [employee, setEmployee] = employeeContext.employee;
+
+    useEffect(() => {
+        setResult('')
+    }, [employee])
+
     const updateAmount = (e) => {
         setAmount(e.target.value);
     }
@@ -33,8 +38,7 @@ function RequestForm() {
         })
         if (sendRequest.status === 200) {
             setResult('Success! Your request was submitted.')
-            setUpdate(true)
-
+            setUpdate(true);
         } else {
             setResult('Unable to submit your request.')
         }
